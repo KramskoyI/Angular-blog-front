@@ -1,0 +1,17 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="registration">
+
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+  
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+
+    <label for="email">Email: </label>
+    <input id="email" type="text" formControlName="email">
+
+    <label for="password">Password: </label>
+    <input id="password" type="text" formControlName="password">
+
+    <button type="submit" [disabled]="!signUpForm.valid"><a routerLink="/sign-in">Registration</a></button>
+  
+  </form>

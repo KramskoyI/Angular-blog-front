@@ -1,0 +1,17 @@
+.menu {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 15px;
+    justify-content: left;
+    align-items: center;
+    background-color: rgb(189, 189, 189);
+    a {
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    a:hover {
+        color: rgb(63, 63, 63);
+    }
+}

@@ -1,0 +1,15 @@
+<p>add-post works!</p>
+<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" class="addPost">
+
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+
+    <label for="content">Content: </label>
+    <input id="content" type="text" formControlName="content">
+
+    <label for="image">Content: </label>
+    <input id="image" type="file" formControlName="image">
+
+    <button type="submit" [disabled]="!addPostForm.valid"><a routerLink="/">Add Post</a></button>
+  
+  </form>
