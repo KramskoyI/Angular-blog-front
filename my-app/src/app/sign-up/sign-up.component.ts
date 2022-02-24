@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import { userService } from 'src/service/user.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -19,6 +20,8 @@ export class SignUpComponent {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.log(this.signUpForm.value);
+    
+    
   }
 
 }
