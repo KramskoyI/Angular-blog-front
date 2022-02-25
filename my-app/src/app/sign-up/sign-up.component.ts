@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 // import { userService } from 'src/service/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,6 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 
 export class SignUpComponent {
+  constructor(private router: Router){}
+
+  goLogIn(){
+    this.router.navigate(['sign-in']);
+  }
+
 
   signUpForm = new FormGroup({
     firstName: new FormControl('', [

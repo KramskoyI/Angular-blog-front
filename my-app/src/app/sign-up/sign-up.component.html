@@ -1,5 +1,5 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="registration">
-
+    <h1>Registration</h1>
     <label for="firstName">First Name: </label>
     <input id="firstName" type="text" formControlName="firstName">
 
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="!signUpForm.valid">Registration</button>
-    <a routerLink="/sign-in" >LogIn</a>
+    <button type="submit" [disabled]="!signUpForm.valid" (click)="goLogIn()">Registration</button>
+    <!-- <a routerLink="/sign-in" >LogIn</a> -->
   
   </form>
