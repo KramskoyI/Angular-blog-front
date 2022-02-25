@@ -7,7 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PostsComponent } from './posts/posts.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post/add-post.component';
 
 @NgModule({
@@ -22,6 +22,7 @@ import { AddPostComponent } from './add-post/add-post.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

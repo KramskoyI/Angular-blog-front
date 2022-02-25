@@ -1,17 +1,54 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="registration">
 
-    <label for="first-name">First Name: </label>
-    <input id="first-name" type="text" formControlName="firstName">
-  
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
+    <label for="firstName">First Name: </label>
+    <input id="firstName" type="text" formControlName="firstName">
+
+    <div *ngIf="signUpForm.controls['firstName'].invalid && signUpForm.controls['firstName'].touched">
+      <div *ngIf="signUpForm.controls['firstName'].errors?.['required']">
+        First Name is required.
+      </div>
+      <div *ngIf="signUpForm.controls['firstName'].errors?.['minlength']">
+        First Name must be at least 2 characters long.
+      </div>
+    </div>
+
+    <label for="lastName">Last Name: </label>
+    <input id="lastName" type="text" formControlName="lastName">
+
+    <div *ngIf="signUpForm.controls['lastName'].invalid && signUpForm.controls['lastName'].touched">
+      <div *ngIf="signUpForm.controls['lastName'].errors?.['required']">
+        Last Name is required.
+      </div>
+      <div *ngIf="signUpForm.controls['lastName'].errors?.['minlength']">
+        Last Name must be at least 2 characters long.
+      </div>
+    </div>
 
     <label for="email">Email: </label>
     <input id="email" type="text" formControlName="email">
 
+    <div *ngIf="signUpForm.controls['email'].invalid && signUpForm.controls['email'].touched">
+      <div *ngIf="signUpForm.controls['email'].errors?.['required']">
+        Email is required.
+      </div>
+      <div *ngIf="signUpForm.controls['email'].errors?.['email']">
+        It is not email.
+      </div>
+    </div>
+
     <label for="password">Password: </label>
     <input id="password" type="text" formControlName="password">
 
-    <button type="submit"><a routerLink="/sign-in" ></a>Registration</button>
+    <div *ngIf="signUpForm.controls['password'].invalid && signUpForm.controls['password'].touched">
+      <div *ngIf="signUpForm.controls['password'].errors?.['required']">
+        Password is required.
+      </div>
+      <div *ngIf="signUpForm.controls['password'].errors?.['minlength']">
+        Password must be at least 6 characters long.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!signUpForm.valid">Registration</button>
+    <a routerLink="/sign-in" >LogIn</a>
   
   </form>

@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { userService } from 'src/service/user.service';
-import {Router} from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+// import { userService } from 'src/service/user.service';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,10 +11,22 @@ import {Router} from '@angular/router';
 export class SignUpComponent {
 
   signUpForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl('')
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]),
+    email: new FormControl('',[
+      Validators.required,
+      Validators.email
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)
+    ])
   });
 
   onSubmit() {
