@@ -1,7 +1,8 @@
 import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-// import { userService } from 'src/service/user.service';
+import { userService } from 'src/app/service/user.service';
 import {Router} from '@angular/router';
+import { User } from '../models/user.models'
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,6 @@ export class SignUpComponent {
   goLogIn(){
     this.router.navigate(['sign-in']);
   }
-
 
   signUpForm = new FormGroup({
     firstName: new FormControl('', [
@@ -37,10 +37,11 @@ export class SignUpComponent {
   });
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.signUpForm.value);
+    let user : User = Object.assign(this.signUpForm.value);
     
-    
+    userService.createUser(user).subscribe((response : User)=>{
+      this.user.push(response);
+    })
   }
 
 }
