@@ -1,8 +1,8 @@
 import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-// import { userService } from 'src/service/user.service';
+import { userService } from '../service/user.service';
 import {Router} from '@angular/router';
-
+import { User } from '../interfaces'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -10,12 +10,7 @@ import {Router} from '@angular/router';
 })
 
 export class SignUpComponent {
-  constructor(private router: Router){}
-
-  goLogIn(){
-    this.router.navigate(['sign-in']);
-  }
-
+  constructor(private router: Router, private userService: userService){}
 
   signUpForm = new FormGroup({
     firstName: new FormControl('', [
@@ -37,10 +32,21 @@ export class SignUpComponent {
   });
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.signUpForm.value);
-    
-    
+  //   console.log(this.signUpForm.value);
   }
+  
+  goLogIn(){
+    const user: User = {
+      firstName: this.signUpForm.value.firstName,
+      lastName: this.signUpForm.value.lastName,
+      email: this.signUpForm.value.email,
+      password: this.signUpForm.value.password
+    }
+    this.userService.create(user).subscribe(() => {
+      this.signUpForm.reset()
+    })
+    console.log(user)
 
+    this.router.navigate(['sign-in'])
+  }
 }

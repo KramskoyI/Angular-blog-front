@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
+import { userService } from '../service/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,11 +9,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent  {
-  constructor(private router: Router){}
+  constructor(private router: Router, private userService: userService){}
 
-  goHome(){
-    this.router.navigate(['']);
-  }
+  
   signInForm = new FormGroup({
     email: new FormControl('',[
       Validators.required,
@@ -29,4 +28,16 @@ export class SignInComponent  {
     console.log(this.signInForm.value);
   }
 
+  goHome(){
+    const user: any = {
+      email: this.signInForm.value.email,
+      password: this.signInForm.value.password
+    }
+    this.userService.logIn(user).subscribe(() => {
+      this.signInForm.reset()
+      this.router.navigate(['']);
+    })
+    console.log(user)
+    
+  }
 }
