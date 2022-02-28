@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { userService } from '../service/user.service';
 import {Router} from '@angular/router';
 import { User } from '../interfaces'
+
+
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -31,9 +34,7 @@ export class SignUpComponent {
     ])
   });
 
-  onSubmit() {
-  //   console.log(this.signUpForm.value);
-  }
+  onSubmit() {  }
   
   goLogIn(){
     const user: User = {
