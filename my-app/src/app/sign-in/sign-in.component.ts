@@ -35,6 +35,7 @@ export class SignInComponent  {
     }
     this.userService.logIn(user).subscribe(() => {
       this.signInForm.reset()
+      console.log(user)
       this.router.navigate(['']);
     })
     console.log(user)
