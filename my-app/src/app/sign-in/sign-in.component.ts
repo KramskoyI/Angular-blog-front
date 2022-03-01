@@ -25,7 +25,7 @@ export class SignInComponent  {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.log(this.signInForm.value);
+    // console.log(this.signInForm.value);
   }
 
   goHome(){
@@ -35,10 +35,7 @@ export class SignInComponent  {
     }
     this.userService.logIn(user).subscribe(() => {
       this.signInForm.reset()
-      console.log(user)
       this.router.navigate(['']);
     })
-    console.log(user)
-    
   }
 }
