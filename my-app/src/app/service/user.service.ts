@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User, UserLog, authResponse} from '../interfaces';
+import { User, UserLog } from '../interfaces';
 import { map, tap } from 'rxjs/operators'
 const signUpUrl = 'http://localhost:3000/api/auth/sign-up';
 const signInUrl = 'http://localhost:3000/api/auth/sign-in';
@@ -12,9 +12,9 @@ export class userService {
   constructor(private http: HttpClient) { }
 
   get token(): any {
-    const accessToken = localStorage.getItem('accessToken')
     return localStorage.getItem('accessToken')
   }
+  
   create(user: User): Observable<User> {
     return this.http.post<User>(signUpUrl, user)
       .pipe(map((data) => {
@@ -39,7 +39,7 @@ export class userService {
   }
 
   private setToken(response: any | null) {
-    if ( response) {
+    if (response) {
       const dateToken = response.expiresIn
       localStorage.setItem('dateToken', dateToken.toString())
       localStorage.setItem('accessToken', response.accessToken)

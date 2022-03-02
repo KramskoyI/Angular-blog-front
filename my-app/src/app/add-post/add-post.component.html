@@ -4,12 +4,30 @@
     <label for="title">Title: </label>
     <input id="title" type="text" formControlName="title">
 
+    <div *ngIf="addPostForm.controls['title'].invalid && addPostForm.controls['title'].touched">
+      <div *ngIf="addPostForm.controls['title'].errors?.['required']">
+        Title is required.
+      </div>
+      <div *ngIf="addPostForm.controls['title'].errors?.['minlength']">
+        Title must be at least 2 characters long.
+      </div>
+    </div>
+
     <label for="content">Content: </label>
     <input id="content" type="text" formControlName="content">
 
-    <label for="image">Content: </label>
-    <input id="image" type="file" formControlName="image">
+    <div *ngIf="addPostForm.controls['content'].invalid && addPostForm.controls['content'].touched">
+      <div *ngIf="addPostForm.controls['content'].errors?.['required']">
+        Content is required.
+      </div>
+      <div *ngIf="addPostForm.controls['content'].errors?.['minlength']">
+        Content must be at least 2 characters long.
+      </div>
+    </div>
 
-    <button type="submit" [disabled]="!addPostForm.valid"><a routerLink="/">Add Post</a></button>
+    <label for="image">Image: </label>
+    <input id="image" type="text" formControlName="image">
+
+    <button type="submit" [disabled]="!addPostForm.valid" (click)="addPost()">Add Post</button>
   
   </form>

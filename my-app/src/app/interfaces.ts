@@ -20,3 +20,11 @@ export interface authResponse {
     accessToken: string
 }
 
+export interface Post {
+    id?: number
+    title: string
+    content: string
+    image: string
+}
+
+
