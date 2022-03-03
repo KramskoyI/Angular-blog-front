@@ -25,7 +25,11 @@ constructor(private userService: userService,private router: Router) {}
                         this.userService.logOut()
                         this.router.navigate(['sign-in'])
                     }
-                    console.log(error.status)
+                    if(error.status === 403) {
+                        // this.userService.setNewToken(Response)
+                        console.log('grragrg')
+                    }
+                    console.log('status error',error.status)
                     return throwError(error)
                 })
             )

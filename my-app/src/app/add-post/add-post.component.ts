@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { postService } from '../service/post.service';
 import {Router} from '@angular/router';
@@ -22,6 +22,10 @@ export class AddPostComponent {
     image: new FormControl('')
   });
 
+  ngOnInit() {
+    console.log(1111111)
+  }
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.log(this.addPostForm.value);
@@ -39,6 +43,6 @@ export class AddPostComponent {
     })
     console.log(post)
 
-    // this.router.navigate(['sign-in'])
+    // this.router.navigate([''])
   }
 }

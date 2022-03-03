@@ -11,7 +11,7 @@ const addPostUrl = 'http://localhost:3000/api/posts/add-post';
 export class postService {
   constructor(private http: HttpClient) { }
 
-  
+
   create(post: Post): Observable<Post> {
     return this.http.post<Post>(addPostUrl, post)
       .pipe(map((data) => {

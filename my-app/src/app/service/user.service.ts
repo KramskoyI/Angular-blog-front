@@ -40,8 +40,19 @@ export class userService {
 
   private setToken(response: any | null) {
     if (response) {
-      const dateToken = response.expiresIn
-      localStorage.setItem('dateToken', dateToken.toString())
+      console.log(response)
+      localStorage.setItem('accessToken', response.accessToken)
+    } else {
+      localStorage.clear()
+    }
+    
+  }
+
+  setNewToken(response: any | null) {
+    console.log(response)
+    if (response) {
+      console.log(response)
+      localStorage.removeItem('accessToken');
       localStorage.setItem('accessToken', response.accessToken)
     } else {
       localStorage.clear()
