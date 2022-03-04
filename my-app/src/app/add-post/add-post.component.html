@@ -1,5 +1,5 @@
 <p>add-post works!</p>
-<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" class="addPost">
+<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" class="addPost" enctype="multipart/form-data">
 
     <label for="title">Title: </label>
     <input id="title" type="text" formControlName="title">
@@ -25,8 +25,8 @@
       </div>
     </div>
 
-    <label for="image">Image: </label>
-    <input id="image" type="text" formControlName="image">
+    <label for="filedata">Image: </label>
+    <input id="filedata" type="file" formControlName="filedata">
 
     <button type="submit" [disabled]="!addPostForm.valid" (click)="addPost()">Add Post</button>
   

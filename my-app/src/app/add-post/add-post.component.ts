@@ -35,7 +35,7 @@ export class AddPostComponent {
     const post: Post = {
       title: this.addPostForm.value.title,
       content: this.addPostForm.value.content,
-      image: this.addPostForm.value.image,
+      image: this.addPostForm.value.filedata,
       
     }
     this.postService.create(post).subscribe(() => {
