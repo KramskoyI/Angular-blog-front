@@ -43,6 +43,6 @@ export class AddPostComponent {
     })
     console.log(post)
 
-    // this.router.navigate([''])
+    this.router.navigate([''])
   }
 }

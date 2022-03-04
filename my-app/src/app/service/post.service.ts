@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Post } from '../interfaces';
 import { map} from 'rxjs/operators'
 const addPostUrl = 'http://localhost:3000/api/posts/add-post';
-
+const getPostsUrl = 'http://localhost:3000/api/posts/';
 
 @Injectable({providedIn:'root'})
 
@@ -17,6 +17,11 @@ export class postService {
       .pipe(map((data) => {
         return data
       }))
+  }
+
+  getAll(): Observable<any>{
+    return this.http.get(getPostsUrl)
+    
   }
 
   
