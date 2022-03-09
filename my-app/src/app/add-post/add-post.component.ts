@@ -19,7 +19,7 @@ export class AddPostComponent {
       Validators.required,
       Validators.minLength(2)
     ]),
-    image: new FormControl('')
+    filedata: new FormControl('')
   });
 
   ngOnInit() {
@@ -42,7 +42,6 @@ export class AddPostComponent {
       this.addPostForm.reset()
     })
     console.log(post)
-
     this.router.navigate([''])
   }
 }

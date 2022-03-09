@@ -1,0 +1,53 @@
+<p>read-post works!</p>
+<div class="box">
+    <div [ngClass]=" {postCard: showPost, nonePost: closePost}" >
+        <p>Title:</p>
+        <p>{{post.title}}</p>
+        <p>Content:</p>
+        <p>{{post.content}}</p>
+        <p>Image:</p>
+        <img src="https://via.placeholder.com/200x200/258DC8/E0F6FD" alt="">
+        <p>Autor:</p>
+        <p>{{post.Users.firstName}} {{post.Users.lastName}}</p>
+        <button type="submit" (click)="delete()">Delete Post</button>
+        <button type="submit" (click)="edit()">Edit</button>
+    </div>
+   <div [ngClass]=" {modal: showModal, nonePost: closeModal}" >
+        <form [formGroup]="Form"  class="addPost" enctype="multipart/form-data">
+    
+            <label for="title">Title: </label>
+            <input id="title" type="text" formControlName="title" >
+        
+            <div *ngIf="Form.controls['title'].invalid && Form.controls['title'].touched">
+              <div *ngIf="Form.controls['title'].errors?.['required']">
+                Title is required.
+              </div>
+              <div *ngIf="Form.controls['title'].errors?.['minlength']">
+                Title must be at least 2 characters long.
+              </div>
+            </div>
+        
+            <label for="content">Content: </label>
+            <input id="content" type="text" formControlName="content">
+        
+            <div *ngIf="Form.controls['content'].invalid && Form.controls['content'].touched">
+              <div *ngIf="Form.controls['content'].errors?.['required']">
+                Content is required.
+              </div>
+              <div *ngIf="Form.controls['content'].errors?.['minlength']">
+                Content must be at least 2 characters long.
+              </div>
+            </div>
+        
+            <label for="filedata">Image: </label>
+            <input id="filedata" type="file" formControlName="filedata">
+        
+            <button type="submit" [disabled]="!Form.valid" (click)="editPost()">Edit</button> 
+            <button type="submit" (click)="edit()">Сancel</button>
+           </form>
+    </div> 
+    
+</div>
+
+
+    

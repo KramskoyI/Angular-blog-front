@@ -10,6 +10,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post/add-post.component';
 import { AuthIntecepter } from './auth.interceptor';
+import { ReadPostComponent } from './read-post/read-post.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -23,7 +24,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     PostsComponent,
     SignUpComponent,
     SignInComponent,
-    AddPostComponent
+    AddPostComponent,
+    ReadPostComponent
   ],
   imports: [
     BrowserModule,

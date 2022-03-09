@@ -13,6 +13,16 @@
         height: 400px;
         border: 1px solid;
         border-radius: 5px;
-        background-color: rgb(204, 204, 204);
+        background-color: rgb(221, 219, 219);
+    }
+    a {
+        font-size: 20px;
+        color: rgb(43, 43, 43);
+        text-decoration: none;
+    }
+    a:hover {
+        color: rgb(255, 255, 255);
+        background-color: rgb(43, 43, 43);
+        border-radius: 3px;
     }
 }

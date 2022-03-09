@@ -12,7 +12,7 @@ export class MenuComponent{
   constructor(private userService: userService) {}
 
   logOut() {
-    console.log(1)
+    
     this.userService.logOut()
   }
 }

@@ -6,6 +6,7 @@ import { map} from 'rxjs/operators'
 const addPostUrl = 'http://localhost:3000/api/posts/add-post';
 const getPostsUrl = 'http://localhost:3000/api/posts/';
 
+
 @Injectable({providedIn:'root'})
 
 export class postService {
@@ -21,8 +22,18 @@ export class postService {
 
   getAll(): Observable<any>{
     return this.http.get(getPostsUrl)
-    
   }
 
+  getById(id: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/api/posts/${id}`)
+  }
+  
+  deleteById(id: string) {
+    return this.http.delete(`http://localhost:3000/api/posts/${id}`)
+  }
+
+  putById(id: string, post: Post): Observable<Post>  {
+    return this.http.put<Post>(`http://localhost:3000/api/posts/${id}`, post)
+  }
   
 }
