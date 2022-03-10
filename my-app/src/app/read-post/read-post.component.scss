@@ -69,3 +69,13 @@ button:hover {
 .nonePost {
     display: none;
 }
+.tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(80, 79, 79);
+    color: aliceblue;
+    border-radius: 3px;
+}

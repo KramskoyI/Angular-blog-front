@@ -10,6 +10,9 @@
         <img src="https://via.placeholder.com/200x200/258DC8/E0F6FD" alt="">
         <p>Autor:</p>
         <p>{{post.Users.firstName}} {{post.Users.lastName}}</p>
+        <div class="tags">
+            <p *ngFor="let tag of post.Tag" >{{tag.tag}}</p>
+        </div>
         <a routerLink="/{{post.id}}">Read Post</a>
     </div>
 </div>

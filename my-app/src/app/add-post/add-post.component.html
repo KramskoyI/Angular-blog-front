@@ -28,6 +28,9 @@
     <label for="filedata">Image: </label>
     <input id="filedata" type="file" formControlName="filedata">
 
+    <label for="tag">Tags: </label>
+    <input id="tag" type="text" formDataName="tag">
+
     <button type="submit" [disabled]="!addPostForm.valid" (click)="addPost()">Add Post</button>
   
   </form>

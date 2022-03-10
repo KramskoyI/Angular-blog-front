@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { postService } from '../service/post.service';
 import {Router} from '@angular/router';
 import { Post } from '../interfaces'
@@ -10,6 +10,7 @@ import { Post } from '../interfaces'
 })
 export class AddPostComponent {
   constructor(private router: Router, private postService: postService){}
+
   addPostForm = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -19,16 +20,17 @@ export class AddPostComponent {
       Validators.required,
       Validators.minLength(2)
     ]),
-    filedata: new FormControl('')
+    filedata: new FormControl(),
+    tag: new FormControl('')
   });
 
   ngOnInit() {
-    console.log(1111111)
+    
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.addPostForm.value);
+    
+    
   }
 
   addPost(){
@@ -36,7 +38,7 @@ export class AddPostComponent {
       title: this.addPostForm.value.title,
       content: this.addPostForm.value.content,
       image: this.addPostForm.value.filedata,
-      
+      tag: this.addPostForm.value.tag
     }
     this.postService.create(post).subscribe(() => {
       this.addPostForm.reset()

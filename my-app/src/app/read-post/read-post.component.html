@@ -9,6 +9,9 @@
         <img src="https://via.placeholder.com/200x200/258DC8/E0F6FD" alt="">
         <p>Autor:</p>
         <p>{{post.Users.firstName}} {{post.Users.lastName}}</p>
+        <div class="tags">
+          <p *ngFor="let tag of post.Tag" >{{tag.tag}}</p>
+        </div>
         <button type="submit" (click)="delete()">Delete Post</button>
         <button type="submit" (click)="edit()">Edit</button>
     </div>
@@ -41,7 +44,7 @@
         
             <label for="filedata">Image: </label>
             <input id="filedata" type="file" formControlName="filedata">
-        
+            
             <button type="submit" [disabled]="!Form.valid" (click)="editPost()">Edit</button> 
             <button type="submit" (click)="edit()">Сancel</button>
            </form>
