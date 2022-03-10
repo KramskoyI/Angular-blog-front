@@ -16,11 +16,14 @@ export class AddPostComponent {
       Validators.required,
       Validators.minLength(2)
     ]),
+
     content: new FormControl('', [
       Validators.required,
       Validators.minLength(2)
     ]),
+
     filedata: new FormControl(),
+
     tag: new FormControl('')
   });
 
@@ -40,6 +43,7 @@ export class AddPostComponent {
       image: this.addPostForm.value.filedata,
       tag: this.addPostForm.value.tag
     }
+    console.log(post)
     this.postService.create(post).subscribe(() => {
       this.addPostForm.reset()
     })

@@ -16,7 +16,6 @@ export class PostsComponent implements OnInit{
   ngOnInit() {
     this.postService.getAll().subscribe(posts => {
       this.posts = posts
-      
     })
   }
 
