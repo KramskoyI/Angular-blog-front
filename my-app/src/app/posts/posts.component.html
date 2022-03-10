@@ -13,6 +13,7 @@
         <div class="tags">
             <p *ngFor="let tag of post.Tag" >{{tag.tag}}</p>
         </div>
+        <p>Like:{{post.Like.length}}</p>
         <a routerLink="/{{post.id}}">Read Post</a>
     </div>
 </div>
