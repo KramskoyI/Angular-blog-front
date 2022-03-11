@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { User, UserLog } from '../interfaces';
 import { map, tap } from 'rxjs/operators'
 const signUpUrl = 'http://localhost:3000/api/auth/sign-up';
 const signInUrl = 'http://localhost:3000/api/auth/sign-in';
+
 
 @Injectable({providedIn:'root'})
 
@@ -37,21 +38,26 @@ export class userService {
   isAutheticated(): boolean {
     return !!this.token
   }
+  
 
   private setToken(response: any | null) {
     if (response) {
-      console.log(response)
       localStorage.setItem('accessToken', response.accessToken)
+      localStorage.setItem('userId', response.id)
+      console.log('response', response)
+      return response
+      
     } else {
       localStorage.clear()
     }
-    
+  }
+
+  getST() {
+    return localStorage.getItem('id')
   }
 
   setNewToken(response: any | null) {
-    console.log(response)
     if (response) {
-      console.log(response)
       localStorage.removeItem('accessToken');
       localStorage.setItem('accessToken', response.accessToken)
     } else {

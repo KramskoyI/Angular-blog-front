@@ -13,7 +13,16 @@
         <div class="tags">
             <p *ngFor="let tag of post.Tag" >{{tag.tag}}</p>
         </div>
-        <p>Like:{{post.Like.length}}</p>
-        <a routerLink="/{{post.id}}">Read Post</a>
+        <div class="like-blok">
+            <div [ngClass]=" {likeAuth: show, noLikeAuth: none}">
+                <img src="https://play-lh.googleusercontent.com/6Ary86oQx3irIDgH-iT-jOXxdFmsx2mdR9LkOqknoCbZzGNTCUPIyZD9c92htPzCJw" alt="" class="img" (click)="like()">
+            </div>
+            <div [ngClass]=" {likeNoAuth: showL, noLikeNoAuth: noneL}">
+                <img src="https://icons.veryicon.com/png/o/miscellaneous/ui-basic-linear-icon/like-106.png" alt="" class="img" (click)="like()">
+            </div>
+            <p>Like:{{post.Like.length}}</p>
+            <a routerLink="/{{post.id}}">Read Post</a>
+        </div>
+        
     </div>
 </div>
