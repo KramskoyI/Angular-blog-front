@@ -12,6 +12,8 @@ const signInUrl = 'http://localhost:3000/api/auth/sign-in';
 export class userService {
   constructor(private http: HttpClient) { }
 
+  isLoginSubject = new BehaviorSubject<any>(0)
+
   get token(): any {
     return localStorage.getItem('accessToken')
   }
@@ -27,11 +29,12 @@ export class userService {
     user.returnSecureToken = true
     return this.http.post<UserLog>(signInUrl, user)
     .pipe(
-      tap(this.setToken)
+      tap(this.setToken.bind(this))
     )
   }
 
   logOut(){ 
+    this.isLoginSubject.next(0)
     this.setToken(null)
   }
 
@@ -42,9 +45,9 @@ export class userService {
 
   private setToken(response: any | null) {
     if (response) {
+      this.isLoginSubject.next(response)
       localStorage.setItem('accessToken', response.accessToken)
       localStorage.setItem('userId', response.id)
-      console.log('response', response)
       return response
       
     } else {
@@ -52,8 +55,9 @@ export class userService {
     }
   }
 
-  getST() {
-    return localStorage.getItem('id')
+  isLoggedIn() : Observable<any> {
+    this.isLoginSubject.subscribe()
+    return this.isLoginSubject.asObservable();
   }
 
   setNewToken(response: any | null) {

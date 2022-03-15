@@ -79,3 +79,29 @@ button:hover {
     color: aliceblue;
     border-radius: 3px;
 }
+.like-blok {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.likeAuth {
+    display: flex;
+}
+.noLikeAuth {
+    display: none;
+
+}
+.likeNoAuth {
+    display: flex;
+}
+.noLikeNoAuth {
+    display: none;
+}
+.img {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+.img:hover {
+    cursor: pointer;
+}

@@ -43,11 +43,11 @@ export class AddPostComponent {
       image: this.addPostForm.value.filedata,
       tag: this.addPostForm.value.tag
     }
-    console.log(post)
+    
     this.postService.create(post).subscribe(() => {
       this.addPostForm.reset()
     })
-    console.log(post)
+    
     this.router.navigate([''])
   }
 }

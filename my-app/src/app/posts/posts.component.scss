@@ -45,25 +45,5 @@
         align-items: center;
         gap: 20px;
     }
-    .likeAuth {
-        display: flex;
-    }
-    .noLikeAuth {
-        display: none;
-
-    }
-    .likeNoAuth {
-        display: flex;
-    }
-    .noLikeNoAuth {
-        display: none;
-    }
-    .img {
-        display: block;
-        width: 20px;
-        height: 20px;
-    }
-    .img:hover {
-        cursor: pointer;
-    }
+    
 }

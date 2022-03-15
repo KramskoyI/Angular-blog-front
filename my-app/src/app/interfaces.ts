@@ -28,4 +28,10 @@ export interface Post {
     tag?: string
 }
 
+export interface Like {
+    id?: number
+    postNum: number
+    userNum: number
+}
+
 

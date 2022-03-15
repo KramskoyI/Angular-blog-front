@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Post } from '../interfaces';
+import { Post, Like } from '../interfaces';
 import { map} from 'rxjs/operators'
 const addPostUrl = 'http://localhost:3000/api/posts/add-post';
 const getPostsUrl = 'http://localhost:3000/api/posts/';
@@ -34,6 +34,10 @@ export class postService {
 
   putById(id: string, post: Post): Observable<Post>  {
     return this.http.put<Post>(`http://localhost:3000/api/posts/${id}`, post)
+  }
+
+  likeById(like: Like) {
+    return this.http.post<Like>('http://localhost:3000/api/posts/like', like)
   }
   
 }

@@ -2,6 +2,10 @@
     <a routerLink="">Home</a>
     <a routerLink="/sign-up">Registration</a>
     <a routerLink="/sign-in">LogIn</a>
-    <a routerLink="/addPost">Add Post</a>
-    <button type="submit" (click)="logOut()">Log Out</button>
+    <div *ngIf="user">
+        <a routerLink="/addPost">Add Post</a>
+        <button type="submit" (click)="logOut()">Log Out</button>
+    </div>
+    <!-- <a routerLink="/addPost">Add Post</a>
+    <button type="submit" (click)="logOut()">Log Out</button> -->
 </header>
