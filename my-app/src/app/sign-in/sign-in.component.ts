@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 import {Router} from '@angular/router';
 import { userService } from '../service/user.service';
 
@@ -37,7 +36,7 @@ export class SignInComponent  {
     }
     this.userService.logIn(user).subscribe(() => {
       this.signInForm.reset()
-      this.router.navigate(['']);
+      this.router.navigate([''])
     })
   }
 }

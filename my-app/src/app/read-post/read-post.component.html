@@ -22,7 +22,7 @@
             <div [ngClass]=" {likeNoAuth: showL, noLikeNoAuth: noneL}">
                 <img src="https://icons.veryicon.com/png/o/miscellaneous/ui-basic-linear-icon/like-106.png" alt="" class="img" (click)="like()">
             </div>
-            <p>Like:{{post.Like.length}}</p>
+            <p>Like:{{counter}}</p>
         </div>
           <button type="submit" (click)="delete()">Delete Post</button>
           <button type="submit" (click)="edit()">Edit</button>

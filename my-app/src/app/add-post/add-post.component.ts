@@ -1,15 +1,17 @@
-import { Component} from '@angular/core';
+import { Component, ElementRef, ViewChild} from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { postService } from '../service/post.service';
 import {Router} from '@angular/router';
-import { Post } from '../interfaces'
+import { Post } from '../interfaces';
+import { HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent {
-  constructor(private router: Router, private postService: postService){}
+  constructor(private router: Router, private postService: postService, private http: HttpClient){}
+  
 
   addPostForm = new FormGroup({
     title: new FormControl('', [
@@ -35,6 +37,8 @@ export class AddPostComponent {
     
     
   }
+
+  
 
   addPost(){
     const post: Post = {

@@ -20,11 +20,11 @@ export class PostsComponent implements OnInit{
     this.isLoggedIn = userService.isLoggedIn()
   }
   
-  
 
   likePost(element: any): any {
     console.log('element mas', element)
   }
+  
   ngOnInit() {
     this.userService.isLoginSubject.subscribe((user)=> {
       this.user = user
@@ -34,10 +34,4 @@ export class PostsComponent implements OnInit{
     })
 
   }
-  
-  
-
-  
-
-  
 }

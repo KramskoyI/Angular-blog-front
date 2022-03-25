@@ -14,9 +14,12 @@ export class ReadPostComponent implements OnInit {
   user: any
   isLoggedIn: Observable<any>
   id: any
+  
   autorId: any
   userId: any
-  userLikeId: any
+  Like: any
+  userLike: any
+  counter: any
   post: any = {}
   Form: any
   showPost: boolean = true
@@ -24,10 +27,10 @@ export class ReadPostComponent implements OnInit {
   showModal: boolean = false
   closeModal: boolean = true
   proverka: boolean = false
-  show:boolean = true
+  show:boolean = false
   none:boolean = false
   showL:boolean = false
-  noneL:boolean = true
+  noneL:boolean = false
 
   constructor(private route: ActivatedRoute, private postService: postService, private router: Router, private userService: userService){
     route.params.subscribe(params => this.id = params['id'])
@@ -42,20 +45,8 @@ export class ReadPostComponent implements OnInit {
     })
     this.postService.getById(this.id)
       .subscribe(post => {
+        
         this.post = post
-        this.autorId = this.post.autorId
-        this.userLikeId = post.Like.userNum
-        if(this.autorId == this.user.id){
-          this.show= true
-          this.none= false
-          this.showL = false
-          this.noneL= true
-        } else {
-          this.show= false
-          this.none= true
-          this.showL = true
-          this.noneL= false
-        }
         this.Form = new FormGroup({
           title: new FormControl( this.post.title, [
             Validators.required,
@@ -67,9 +58,44 @@ export class ReadPostComponent implements OnInit {
           ]),
           filedata: new FormControl('')
         })
-      
-      })
-    
+        this.autorId = this.post.autorId
+        this.Like = post.Like
+        this.counter = post.Like.length
+        if(this.Like.length == 0) {
+          this.show = false
+          this.none = true
+          this.showL = true
+          this.noneL = false
+        } else {
+         this.userLike = this.Like.find( (item: any) => item.userNum == this.userId )
+          if(this.userLike){
+          console.log(this.userLike.userNum)
+          this.show = true
+          this.none = false
+          this.showL = false
+          this.noneL= true
+          } else {
+           console.log(false)
+           this.show = false
+           this.none = true
+           this.showL = true
+           this.noneL= false
+         }
+        }
+
+    })
+
+    this.Form = new FormGroup({
+      title: new FormControl( this.post.title, [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      content: new FormControl(this.post.content, [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      filedata: new FormControl('')
+    })
   }
   
 
@@ -103,21 +129,33 @@ export class ReadPostComponent implements OnInit {
     this.postService.putById(this.id, post).subscribe(() => {
       this.Form.reset()
     })
-    console.log(post)
     this.router.navigate([''])
   }
+
   like() {
     this.show = !this.show
     this.none = !this.none
     this.showL = !this.showL
     this.noneL = !this.noneL
+
     const like: Like = {
       postNum: this.post.id,
       userNum: this.user.id
     }
     
-    this.postService.likeById(like).subscribe(() => {
-      console.log(like)
+    this.postService.likeById(like).subscribe((data) => {
+      if(data) {
+        console.log(data)
+        this.counter++
+      } else {
+        console.log('not data')
+        this.counter--
+      }
+      
     })
+    
+    
+    
+    
   }
 }

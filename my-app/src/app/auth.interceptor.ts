@@ -9,7 +9,7 @@ export class AuthIntecepter implements HttpInterceptor {
 constructor(private userService: userService,private router: Router) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if(this.userService.isAutheticated()){
+        if(this.userService.isAutheticated2()){
             req = req.clone({
                 headers: req.headers.set('authorization', this.userService.token)
             })
@@ -26,10 +26,17 @@ constructor(private userService: userService,private router: Router) {}
                         this.router.navigate(['sign-in'])
                     }
                     if(error.status === 403) {
-                        // this.userService.setNewToken(Response)
-                        console.log('grragrg')
+                        console.log('ERROR 403')
+                        this.userService.setNewToken()
+                            .subscribe((data) => {
+                            console.log('this is DATA in interseptor', data)
+                            this.userService.logOut()
+                            this.userService.setToken2(data)
+                            
+                            
+                        })
                     }
-                    console.log('status error',error.status)
+                    console.log('status error', error.status)
                     return throwError(error)
                 })
             )

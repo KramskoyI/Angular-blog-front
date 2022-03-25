@@ -27,7 +27,11 @@ export class postService {
   getById(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/posts/${id}`)
   }
-  
+
+  getLikesId(id: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/api/posts/all-like/${id}`)
+  }
+
   deleteById(id: string) {
     return this.http.delete(`http://localhost:3000/api/posts/${id}`)
   }

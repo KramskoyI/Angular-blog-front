@@ -26,6 +26,7 @@ export interface Post {
     content: string
     image: string
     tag?: string
+    autorId?: number
 }
 
 export interface Like {
