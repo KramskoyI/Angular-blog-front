@@ -24,7 +24,8 @@ export interface Post {
     id?: number
     title: string
     content: string
-    image: string
+    image: any
+    nameImage: any
     tag?: string
     autorId?: number
 }

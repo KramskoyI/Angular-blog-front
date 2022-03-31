@@ -16,6 +16,7 @@ export class postService {
   create(post: Post): Observable<Post> {
     return this.http.post<Post>(addPostUrl, post)
       .pipe(map((data) => {
+        console.log(data)
         return data
       }))
   }

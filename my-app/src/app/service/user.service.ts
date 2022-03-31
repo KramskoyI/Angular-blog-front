@@ -56,7 +56,6 @@ export class userService {
   }
 
   private setToken(response: any | null) {
-    console.log('set token', response)
     if (response) {
       this.isLoginSubject.next(response)
       localStorage.setItem('accessToken', response.accessToken)

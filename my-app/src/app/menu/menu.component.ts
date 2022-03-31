@@ -17,20 +17,18 @@ export class MenuComponent implements OnInit{
   ngOnInit() {
     console.log('ngOnInit menu component')
     
-    this.userService.isAutheticated().subscribe((data:any) => {
-      console.log('this is data menu', data)
-      this.userService.isLoginSubject.next(data)
-      
-    })
-    this.userService.isLoginSubject.subscribe((user)=> {
-      this.user = user
-      console.log('this is user in menu', this.user)
-    })
+    this.userService.isAutheticated()
+      .subscribe((data:any) => {
+        console.log('this is data menu', data)
+        this.userService.isLoginSubject.next(data)
+      })
 
-    
-
-    
-    
+    this.userService.isLoginSubject
+      .subscribe((user)=> {
+        console.log('user===>>', user)
+        this.user = user
+        console.log('this is user in menu', this.user)
+      })
   }
 
   logOut() {

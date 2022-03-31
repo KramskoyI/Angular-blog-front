@@ -125,6 +125,7 @@ export class ReadPostComponent implements OnInit {
       title: this.Form.value.title,
       content: this.Form.value.content,
       image: this.Form.value.filedata,
+      nameImage: 'duvbu'
     }
     this.postService.putById(this.id, post).subscribe(() => {
       this.Form.reset()

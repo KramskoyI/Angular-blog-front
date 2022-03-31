@@ -1,5 +1,5 @@
 <p>add-post works!</p>
-<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" class="addPost" enctype="multipart/form-data">
+<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" class="addPost" enctype="multipart/form-data" >
 
     <label for="title">Title: </label>
     <input id="title" type="text" formControlName="title">
@@ -25,9 +25,14 @@
       </div>
     </div>
 
-    <label for="filedata">Image: </label>
-    <input id="filedata" type="file" formControlName="filedata"  >
-    
+    <!-- <label for="filedata">Image: </label>
+    <input id="filedata" type="file" formControlName="filedata"  (change)="onFileSelected($event)"> -->
+    <!-- <label for="filedata">Image: </label>
+    <input id="filedata" type="file" accept="image/*" (change)="onFileSelected($event)"> -->
+    <form [formGroup]="formGroup"  (ngSubmit)="onSubmit()" class="addPostImage">
+      <label for="filedata">Image: </label>
+      <input type="file" (change)="onFileChange($event)" />
+    </form>
 
     <label for="tag">Tags: </label>
     <input id="tag" type="text" formControlName="tag">
@@ -35,3 +40,5 @@
     <button type="submit" [disabled]="!addPostForm.valid" (click)="addPost()">Add Post</button>
   
   </form>
+
+  
