@@ -18,31 +18,21 @@ export class AddPostComponent {
   nameFile: any
   constructor(private router: Router, private postService: postService, private http: HttpClient, private fb: FormBuilder, private cd: ChangeDetectorRef){}
 
-  // onFileSelected(event: any) {
-  //   this.selectedFile = <File>event.target.files[0]
-  //   console.log('this.selectedFile', this.selectedFile, event)
-  // }
   onFileChange(event: any) {
     const reader = new FileReader();
- 
+    
     if(event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
+      console.log('image')
+      const [file] = event.target.files
       this.nameFile = file.name
-      console.log('name', name)
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
       console.log('this is const [file]', [file])
       reader.onload = () => {
-        this.formGroup.patchValue({
-          file: reader.result
-       });
-       console.log('this.formGroup', this.formGroup.value)
-       this.selectedFile = this.formGroup.value
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
-        
+        this.formGroup.patchValue({ file: reader.result })
+        this.selectedFile = this.formGroup.value
+        this.cd.markForCheck()
       };
-      console.log('reader.onload', reader.onload)
-    }
+    } 
   }
 
   
@@ -68,21 +58,33 @@ export class AddPostComponent {
   onSubmit() {}
 
   addPost(){
-    const test = this.selectedFile.file
-    const test2 = test.slice(23, test.length-1)
-    const post: Post = {
-      title: this.addPostForm.value.title,
-      content: this.addPostForm.value.content,
-      image: test,
-      nameImage: this.nameFile ,
-      tag: this.addPostForm.value.tag
+    if(this.selectedFile) {
+      const test = this.selectedFile.file
+      const test2 = test.slice(23, test.length-1)
+      const post: Post = {
+        title: this.addPostForm.value.title,
+        content: this.addPostForm.value.content,
+        image: test,
+        nameImage: this.nameFile ,
+        tag: this.addPostForm.value.tag
+      }
+      this.postService.create(post).subscribe((res) => {
+        console.log('res: ', res)
+        this.addPostForm.reset()
+      })
+    } else {
+      const post: Post = {
+        title: this.addPostForm.value.title,
+        content: this.addPostForm.value.content,
+        image: null,
+        nameImage: null,
+        tag: this.addPostForm.value.tag
+      }
+      this.postService.create(post).subscribe((res) => {
+        console.log('res: ', res)
+        this.addPostForm.reset()
+      })
     }
-    
-    this.postService.create(post).subscribe((res) => {
-      console.log('res: ', res)
-      this.addPostForm.reset()
-    })
-    
-    // this.router.navigate([''])
+    this.router.navigate([''])
   }
 }
