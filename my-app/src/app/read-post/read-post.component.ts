@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { postService } from '../service/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Observable, switchMap, Subscription } from 'rxjs';
 import { Post, Like } from '../interfaces'
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { userService } from '../service/user.service';
 @Component({
   selector: 'app-read-post',
@@ -32,7 +32,7 @@ export class ReadPostComponent implements OnInit {
   showL:boolean = false
   noneL:boolean = false
 
-  constructor(private route: ActivatedRoute, private postService: postService, private router: Router, private userService: userService){
+  constructor(private route: ActivatedRoute, private postService: postService, private router: Router, private userService: userService, private fb: FormBuilder, private cd: ChangeDetectorRef){
     route.params.subscribe(params => this.id = params['id'])
     this.isLoggedIn = userService.isLoggedIn()
   }
@@ -45,8 +45,8 @@ export class ReadPostComponent implements OnInit {
     })
     this.postService.getById(this.id)
       .subscribe(post => {
-        
         this.post = post
+        console.log(post)
         this.Form = new FormGroup({
           title: new FormControl( this.post.title, [
             Validators.required,
@@ -94,9 +94,10 @@ export class ReadPostComponent implements OnInit {
         Validators.required,
         Validators.minLength(2)
       ]),
-      filedata: new FormControl('')
+      filedata: new FormControl("http://localhost:3000/image/{{post.image}}")
     })
   }
+  
   
 
   delete() {

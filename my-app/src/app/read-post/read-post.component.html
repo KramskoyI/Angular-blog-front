@@ -30,7 +30,7 @@
         <p *ngIf="proverka">It is not yuors POST!!!</p>
     </div>
    <div [ngClass]=" {modal: showModal, nonePost: closeModal}" >
-        <form [formGroup]="Form"  class="addPost" enctype="multipart/form-data">
+        <form [formGroup]="Form"  class="addPost"  ethod="post" enctype="multipart/form-data">
     
             <label for="title">Title: </label>
             <input id="title" type="text" formControlName="title" >
@@ -57,7 +57,8 @@
             </div>
         
             <label for="filedata">Image: </label>
-            <input id="filedata" type="file" formControlName="filedata">
+            <input id="filedata" type="file" formControlName="filedata" value="http://localhost:3000/image/{{post.image}}">
+             
             
             <button type="submit" [disabled]="!Form.valid" (click)="editPost()">Edit</button> 
             <button type="submit" (click)="edit()">Сancel</button>

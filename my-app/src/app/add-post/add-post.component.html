@@ -29,9 +29,9 @@
     <input id="filedata" type="file" formControlName="filedata"  (change)="onFileSelected($event)"> -->
     <!-- <label for="filedata">Image: </label>
     <input id="filedata" type="file" accept="image/*" (change)="onFileSelected($event)"> -->
-    <form [formGroup]="formGroup"  (ngSubmit)="onSubmit()" class="addPostImage">
+    <form [formGroup]="formGroup"  (ngSubmit)="onSubmit()" class="addPostImage" >
       <label for="filedata">Image: </label>
-      <input type="file" (change)="onFileChange($event)" />
+      <input type="file" (change)="onFileChange($event)" accept="image/*"/>
     </form>
 
     <label for="tag">Tags: </label>
