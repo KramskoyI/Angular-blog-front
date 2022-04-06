@@ -12,7 +12,7 @@ export class SortTagComponent implements OnInit {
   constructor(private route: ActivatedRoute, private postService: postService, private router: Router,) { route.params.subscribe(params => this.tag = params['tag'])}
 
   ngOnInit(): void {
-    
+    console.log('init')
     this.postService.getByTag(this.tag)
       .subscribe(posts => {
         this.posts = posts

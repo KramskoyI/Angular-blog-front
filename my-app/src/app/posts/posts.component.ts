@@ -11,9 +11,9 @@ import { Observable } from "rxjs";
 })
 export class PostsComponent implements OnInit{
   user: any
-  posts: any = [];
-  
-
+  posts: any = []
+  start: number = 0
+  end: number = 3
   isLoggedIn: Observable<any>
 
   constructor(private router: Router, private postService: postService, private userService: userService){  
@@ -30,8 +30,24 @@ export class PostsComponent implements OnInit{
       this.user = user
     })
     this.postService.getAll().subscribe(posts => {
-      this.posts = posts
+      this.posts = posts.slice(this.start, this.end)
     })
 
+  }
+  next() {
+    this.start = this.start + 3
+    this.end = this.end + 3
+    this.postService.getAll().subscribe(posts => {
+      this.posts = posts.slice(this.start, this.end)
+    })
+    console.log(this.start, this.end)
+  }
+  down() {
+    this.start = this.start - 3
+    this.end = this.end - 3
+    this.postService.getAll().subscribe(posts => {
+      this.posts = posts.slice(this.start, this.end)
+    })
+    console.log(this.start, this.end)
   }
 }

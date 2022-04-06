@@ -9,12 +9,10 @@
         <img src="http://localhost:3000/image/{{post.image}}" class="image">
         <p>Autor:</p>
         <p>{{post.Users.firstName}} {{post.Users.lastName}}</p>
-        <!-- <div class="tags">
-          <p *ngFor="let tag of post.Tag" >{{tag.tag}}</p>
-        </div> -->
+        
         <div class="tags">
           <a *ngFor="let tag of post.Tag"  routerLink="/tag/{{tag.tag}}">{{tag.tag}}</a>
-      </div>
+        </div>
         
         <div *ngIf="user">
           <div class="like-blok">
