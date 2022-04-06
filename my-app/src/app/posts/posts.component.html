@@ -11,7 +11,7 @@
         <p>Autor:</p>
         <p>{{post.Users.firstName}} {{post.Users.lastName}}</p>
         <div class="tags">
-            <p *ngFor="let tag of post.Tag" >{{tag.tag}}</p>
+            <a *ngFor="let tag of post.Tag"  routerLink="/tag/{{tag.tag}}">{{tag.tag}}</a>
         </div>
         <div class="like-blok">
             <a routerLink="/{{post.id}}">Read Post</a>

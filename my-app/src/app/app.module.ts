@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post/add-post.component';
 import { AuthIntecepter } from './auth.interceptor';
 import { ReadPostComponent } from './read-post/read-post.component';
+import { SortTagComponent } from './sort-tag/sort-tag.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -25,7 +26,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SignUpComponent,
     SignInComponent,
     AddPostComponent,
-    ReadPostComponent
+    ReadPostComponent,
+    SortTagComponent
   ],
   imports: [
     BrowserModule,

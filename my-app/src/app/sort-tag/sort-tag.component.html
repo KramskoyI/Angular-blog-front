@@ -1,0 +1,24 @@
+<p>sort-tag works!</p>
+<!-- <p *ngIf="user">Welcome {{user.firstName}} {{user.lastName}}</p> -->
+<div class="posts">
+    <div *ngFor="let post of posts" class="post">
+        <p>Title:</p>
+        <p>{{post.Posts.title}}</p>
+        <p>Content:</p>
+        <p>{{post.Posts.content}}</p>
+        <p>Image:</p>
+        <img src="http://localhost:3000/image/{{post.Posts.image}}" class="image">
+        
+        <p>Autor:</p>
+        <p>{{post.Posts.Users.firstName}} {{post.Posts.Users.lastName}}</p>
+        <div class="tags">
+            
+            <a *ngFor="let tag of post.Posts.Tag"  routerLink="/tag/{{tag.tag}}">{{tag.tag}}</a>
+            
+        </div>
+        <div class="like-blok">
+            <a routerLink="/{{post.Posts.id}}">Read Post</a>
+        </div>
+        
+    </div>
+</div>

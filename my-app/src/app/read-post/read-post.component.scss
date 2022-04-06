@@ -109,3 +109,13 @@ button:hover {
     width: 400px;
     height: 400px;
 }
+a {
+    font-size: 20px;
+    color: rgb(43, 43, 43);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(43, 43, 43);
+    border-radius: 3px;
+}

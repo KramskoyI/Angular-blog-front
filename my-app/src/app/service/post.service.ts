@@ -29,6 +29,10 @@ export class postService {
     return this.http.get(`http://localhost:3000/api/posts/${id}`)
   }
 
+  getByTag(tag:string): Observable<any> {
+    return this.http.get(`http://localhost:3000/api/posts/tag/${tag}`)
+  }
+
   getLikesId(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/api/posts/all-like/${id}`)
   }
