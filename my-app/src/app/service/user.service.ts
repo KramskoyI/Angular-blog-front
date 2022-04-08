@@ -83,4 +83,8 @@ export class userService {
       localStorage.clear()
     }
   }
+
+  getGoogle() {
+    return this.http.get('http://localhost:3000/api/auth/google')
+  }
 }

@@ -1,5 +1,9 @@
 <p>sort-tag works!</p>
 <!-- <p *ngIf="user">Welcome {{user.firstName}} {{user.lastName}}</p> -->
+<div class="buttons">
+    <button type="button" class="pag" (click)="down()"> 	&#60; &#60; &#60; </button>
+    <button type="button" class="pag" (click)="next()"> 	&#62; &#62; &#62; </button>
+</div>
 <div class="posts">
     <div *ngFor="let post of posts" class="post">
         <p>Title:</p>

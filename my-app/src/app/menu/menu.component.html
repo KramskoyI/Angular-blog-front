@@ -3,7 +3,7 @@
     <a routerLink="">Home</a>
     <a routerLink="/sign-up" *ngIf="!user">Registration</a>
     <a routerLink="/sign-in" *ngIf="!user">LogIn</a>
-    
+    <button type="button" (click)="logGoogle()" *ngIf="!user"> Sign in with Google</button>
     <a routerLink="/addPost" *ngIf="user">Add Post</a>
     <button type="submit" (click)="logOut()" *ngIf="user">Log Out</button>
     

@@ -34,4 +34,9 @@ export class MenuComponent implements OnInit{
   logOut() {
     this.userService.logOut()
   }
+  logGoogle() {
+    this.userService.getGoogle()
+      .subscribe()
+    console.log('google')
+  }
 }
