@@ -11,7 +11,8 @@ constructor(private userService: userService,private router: Router) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if(this.userService.isAutheticated2()){
             req = req.clone({
-                headers: req.headers.set('authorization', this.userService.token)
+                headers: req.headers.set('authorization', this.userService.token),
+                
             })
         } 
         return next.handle(req)
