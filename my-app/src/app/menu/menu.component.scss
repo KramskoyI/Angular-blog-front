@@ -2,17 +2,17 @@
     display: flex;
     gap: 40px;
     width: 100%;
-    padding: 15px;
-    justify-content: left;
+    padding: 10px;
+    justify-content: start;
     align-items: center;
-    background-color: rgb(189, 189, 189);
+    background-color: rgb(70, 69, 69);
     a {
         font-size: 20px;
-        color: rgb(255, 255, 255);
+        color: rgb(216, 214, 214);
         text-decoration: none;
     }
     a:hover {
-        color: rgb(63, 63, 63);
+        color: rgb(255, 255, 255);
     }
     button {
         border: 1px solid #686868;

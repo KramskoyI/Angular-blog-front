@@ -39,4 +39,7 @@ export class MenuComponent implements OnInit{
       .subscribe()
     console.log('google')
   }
+  onGoogle() {
+    console.log(1)
+  }
 }
