@@ -2,7 +2,7 @@
     <a routerLink="">Home</a>
     <a routerLink="/sign-up" *ngIf="!user">Registration</a>
     <a routerLink="/sign-in" *ngIf="!user">LogIn</a>
-    <a (click)="onGoogle()" target="_blank" href="http://localhost:3000/api/auth/google" *ngIf="!user"><img src="https://thumbs.dreamstime.com/b/%D0%BA%D1%80%D0%BE%D0%BC-google-80364121.jpg" alt="" width="35" height="35"></a>
+   
     <a routerLink="/addPost" *ngIf="user">Add Post</a>
     <button type="submit" (click)="logOut()" *ngIf="user">Log Out</button>
 </header>

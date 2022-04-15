@@ -1,6 +1,7 @@
 <p *ngIf="user">Welcome {{user.firstName}} {{user.lastName}}</p>
 <div class="buttons">
-    <button type="button" class="pag" (click)="down()"> 	&#60; &#60; &#60; </button>
+    <button type="button" class="pag" (click)="down()" [ngClass]=" {showButton: show, noShowButton: none}"> 	&#60; &#60; &#60; </button>
+    <p >{{page}}</p>
     <button type="button" class="pag" (click)="next()"> 	&#62; &#62; &#62; </button>
 </div>
 

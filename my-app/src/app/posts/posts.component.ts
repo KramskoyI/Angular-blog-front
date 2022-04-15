@@ -15,6 +15,11 @@ export class PostsComponent implements OnInit{
   start: number = 0
   end: number = 3
   isLoggedIn: Observable<any>
+  page: number = 1
+  show:boolean = false
+  none:boolean = true
+
+  
 
   constructor(private router: Router, private postService: postService, private userService: userService){  
     this.isLoggedIn = userService.isLoggedIn()
@@ -35,19 +40,36 @@ export class PostsComponent implements OnInit{
 
   }
   next() {
+    this.page = this.page + 1
     this.start = this.start + 3
     this.end = this.end + 3
     this.postService.getAll().subscribe(posts => {
       this.posts = posts.slice(this.start, this.end)
     })
+    if(this.page > 1) {
+      this.show = true
+      this.none = false
+    }
     console.log(this.start, this.end)
   }
   down() {
+    this.page = this.page - 1
     this.start = this.start - 3
     this.end = this.end - 3
     this.postService.getAll().subscribe(posts => {
       this.posts = posts.slice(this.start, this.end)
     })
+    if(this.page > 1) {
+      this.show = true
+      this.none = false
+    } else {
+      this.show = false
+      this.none = true
+    }
+    // if(this.page = 1) {
+    //   this.show = false
+    //   this.none = true
+    // }
     console.log(this.start, this.end)
   }
 }
