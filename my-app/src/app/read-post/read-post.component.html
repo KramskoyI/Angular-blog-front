@@ -56,10 +56,14 @@
               </div>
             </div>
         
-            <label for="filedata">Image: </label>
-            <input id="filedata" type="file" formControlName="filedata" value="http://localhost:3000/image/{{post.image}}">
+            <form [formGroup]="formGroup"   class="addPostImage" >
+              <label for="filedata">Image: </label>
+              <input type="file" (change)="onFileChange($event)" accept="image/jpeg"/>
+            </form>
              
-            
+            <label for="tag">Tags: </label>
+            <input id="tag" type="text" formControlName="tag">
+
             <button type="submit" [disabled]="!Form.valid" (click)="editPost()">Edit</button> 
             <button type="submit" (click)="edit()">Сancel</button>
            </form>

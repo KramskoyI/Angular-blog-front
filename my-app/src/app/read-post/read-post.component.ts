@@ -31,12 +31,34 @@ export class ReadPostComponent implements OnInit {
   none:boolean = false
   showL:boolean = false
   noneL:boolean = false
+  selectedFile: any
+  formGroup = this.fb.group({
+    file: [null]
+  });
+  nameFile: any
 
   constructor(private route: ActivatedRoute, private postService: postService, private router: Router, private userService: userService, private fb: FormBuilder, private cd: ChangeDetectorRef){
     route.params.subscribe(params => this.id = params['id'])
     this.isLoggedIn = userService.isLoggedIn()
   }
   
+  onFileChange(event: any) {
+    const reader = new FileReader();
+    
+    if(event.target.files && event.target.files.length) {
+      console.log('image')
+      const [file] = event.target.files
+      this.nameFile = file.name
+      reader.readAsDataURL(file)
+      console.log('this is const [file]', [file])
+      reader.onload = () => {
+        this.formGroup.patchValue({ file: reader.result })
+        this.selectedFile = this.formGroup.value
+        this.cd.markForCheck()
+      };
+    } 
+  }
+
   ngOnInit() {
     this.userService.isLoginSubject.subscribe((user)=> {
       this.user = user
@@ -56,7 +78,7 @@ export class ReadPostComponent implements OnInit {
             Validators.required,
             Validators.minLength(2)
           ]),
-          filedata: new FormControl('')
+          tag: new FormControl('')
         })
         this.autorId = this.post.autorId
         this.Like = post.Like
@@ -94,7 +116,7 @@ export class ReadPostComponent implements OnInit {
         Validators.required,
         Validators.minLength(2)
       ]),
-      filedata: new FormControl("http://localhost:3000/image/{{post.image}}")
+      tag: new FormControl(this.post.tag)
     })
   }
   
@@ -122,15 +144,31 @@ export class ReadPostComponent implements OnInit {
   }
 
   editPost(){
-    const post: Post = {
-      title: this.Form.value.title,
-      content: this.Form.value.content,
-      image: this.Form.value.filedata,
-      nameImage: 'duvbu'
+    if(this.selectedFile) {
+      const test = this.selectedFile.file
+      
+      const post: Post = {
+        title: this.Form.value.title,
+        content: this.Form.value.content,
+        image: test,
+        nameImage: this.nameFile ,
+        tag: this.Form.value.tag
+      }
+      this.postService.putById(this.id, post).subscribe(() => {
+        this.Form.reset()
+      })
+    } else {
+      const post: Post = {
+        title: this.Form.value.title,
+        content: this.Form.value.content,
+        image: null,
+        nameImage: null,
+        tag: this.Form.value.tag
+      }
+      this.postService.putById(this.id, post).subscribe(() => {
+        this.Form.reset()
+      })
     }
-    this.postService.putById(this.id, post).subscribe(() => {
-      this.Form.reset()
-    })
     this.router.navigate([''])
   }
 

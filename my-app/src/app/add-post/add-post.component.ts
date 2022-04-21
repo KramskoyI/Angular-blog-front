@@ -10,8 +10,8 @@ import { HttpClient} from '@angular/common/http';
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent {
-  selectedFile: any
   addPostForm: any
+  selectedFile: any
   formGroup = this.fb.group({
     file: [null]
   });
@@ -48,9 +48,6 @@ export class AddPostComponent {
         Validators.required,
         Validators.minLength(2)
       ]),
-  
-      // filedata: new FormControl(),
-      // filedata: new FormData(),
   
       tag: new FormControl('')
     });
