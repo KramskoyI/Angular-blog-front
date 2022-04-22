@@ -11,8 +11,6 @@ import { userService } from '../service/user.service';
 export class SignInComponent  {
   constructor(private router: Router, private userService: userService){}
 
-  
-  
   signInForm = new FormGroup({
     email: new FormControl('',[
       Validators.required,

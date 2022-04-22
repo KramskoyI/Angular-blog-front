@@ -25,11 +25,6 @@ export class PostsComponent implements OnInit{
     this.isLoggedIn = userService.isLoggedIn()
   }
   
-
-  likePost(element: any): any {
-    console.log('element mas', element)
-  }
-  
   ngOnInit() {
     this.userService.isLoginSubject.subscribe((user)=> {
       this.user = user
@@ -39,8 +34,18 @@ export class PostsComponent implements OnInit{
     })
 
   }
+  counterUp( page: number): number {
+    this.page = page + 1
+    return this.page
+  }
+  counterDown( page: number): number {
+    this.page = page - 1
+    return this.page
+  }
   next() {
-    this.page = this.page + 1
+    this.counterUp(this.page)
+    // this.page = this.page + 1
+    
     this.start = this.start + 3
     this.end = this.end + 3
     this.postService.getAll().subscribe(posts => {
@@ -52,8 +57,9 @@ export class PostsComponent implements OnInit{
     }
     console.log(this.start, this.end)
   }
+  
   down() {
-    this.page = this.page - 1
+    this.counterDown(this.page)
     this.start = this.start - 3
     this.end = this.end - 3
     this.postService.getAll().subscribe(posts => {

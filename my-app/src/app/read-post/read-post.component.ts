@@ -191,11 +191,6 @@ export class ReadPostComponent implements OnInit {
         console.log('not data')
         this.counter--
       }
-      
     })
-    
-    
-    
-    
   }
 }
